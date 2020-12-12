@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>ツイート一覧</title>
 
 </head>
@@ -54,17 +55,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <ul class="tweet-list">
             <?php foreach($tweets as $tweet) : ?>
                 <li>
-                    <a href=""><?= h($tweet['content']) ?></a><br>
+                    <a href="show.php?id=<?= h($tweet['id']) ?>"><?= h($tweet['content']) ?></a><br>
                     投稿日時: <?= h($tweet['created_at']) ?>
-                    <?php if(h($tweet['good']) == '0') : ?>
-                        <a href="good.php?id=<?= h($tweet['id']) ?>">☆</a>
+                    <?php if(h($tweet['good']) == 0) : ?>
+                        <a class="favorite" href="good.php?id=<?= h($tweet['id']) ?>">☆</a>
                     <?php else : ?>
-                        <a href="good.php?id=<?= h($tweet['id']) ?>">★</a>
+                        <a class="favorite" href="good.php?id=<?= h($tweet['id']) ?>">★</a>
                     <?php endif ; ?>
                     <hr>
                 </li>
             <?php endforeach ; ?>
         </ul>
+    <?php else : ?>
+        <h3>投稿された記事はありません</h3>
     <?php endif ; ?>
     
 </body>

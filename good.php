@@ -13,10 +13,10 @@ $stmt->execute();
 
 $tweet = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($tweet['good'] == '0') {
-    $sql2 = "UPDATE tweets SET good = '1' WHERE id = :id";
+if ($tweet['good'] == 0) {
+    $sql2 = "UPDATE tweets SET good = 1 WHERE id = :id";
 } else {
-    $sql2 = "UPDATE tweets SET good = '0' WHERE id = :id";
+    $sql2 = "UPDATE tweets SET good = 0 WHERE id = :id";
 }
 
 $stmt2 = $dbh->prepare($sql2);
@@ -25,7 +25,7 @@ $stmt2->execute();
 
 $tweet2 = $stmt2->fetch(PDO::FETCH_ASSOC);
 
-var_dump($tweet);
-var_dump($tweet2);
+header('Location:index.php');
+exit;
 
 ?>
